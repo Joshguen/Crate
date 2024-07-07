@@ -10,18 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.crate.databinding.FragmentDashboardBinding;
+import com.example.crate.databinding.FragmentMaterialsBinding;
 
-public class DashboardFragment extends Fragment {
+public class MaterialsFragment extends Fragment {
 
-    private FragmentDashboardBinding binding;
+    private @NonNull FragmentMaterialsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        MaterialsViewModel dashboardViewModel =
+                new ViewModelProvider(this).get(MaterialsViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentMaterialsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textDashboard;
