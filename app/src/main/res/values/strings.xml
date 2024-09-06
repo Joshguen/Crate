@@ -3,4 +3,10 @@
     <string name="title_home">Home</string>
     <string name="title_materials">Materials</string>
     <string name="title_notifications">Notifications</string>
+    <string name="empty_list_text">Empty</string>
+    <string name="enter_title">Enter Title</string>
+    <string name="enter_desc">Enter Desc</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_delete">Delete</string>
+    <string name="add_record">Add record</string>
 </resources>

@@ -16,11 +16,36 @@
         android:textAlignment="center"
         android:textSize="20sp" />
 
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="1dp"
+        android:layout_below="@id/CurrentCraftClient"
+        android:padding="10dp" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/newCraftButton"
+        android:text="@string/empty_list_text" />
+
     <TextView
         android:id="@+id/CurrentCraftTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="None Selected"
+        tools:layout_editor_absoluteY="195dp" />
+
+    <TextView
+        android:id="@+id/CurrentCraftClient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="None Selected"
+        android:layout_below="@id/CurrentCraftTitle"
         tools:layout_editor_absoluteY="195dp" />
 
     <Button
@@ -29,6 +54,15 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="New Craft"
+        tools:layout_editor_absoluteY="195dp" />
+
+    <Button
+        android:id="@+id/tempBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newCraftButton"
+        android:layout_centerHorizontal="true"
+        android:text="Test"
         tools:layout_editor_absoluteY="195dp" />
 
 </RelativeLayout>

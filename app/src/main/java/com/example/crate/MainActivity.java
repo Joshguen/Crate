@@ -1,10 +1,15 @@
 package com.example.crate;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -25,6 +30,17 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
+    private DBManager dbManager;
+
+    private ListView listView;
+
+    private SimpleCursorAdapter adapter;
+
+    final String[] from = new String[] { DatabaseHelper._ID,
+            DatabaseHelper.SUBJECT, DatabaseHelper.DESC };
+
+    final int[] to = new int[] { R.id.id, R.id.title, R.id.desc };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +58,22 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        dbManager = new DBManager(this);
+        dbManager.open();
+        Cursor cursor = dbManager.fetch();
+
+        listView = findViewById(R.id.list_view);
+        listView.setEmptyView(findViewById(R.id.empty));
+
+        adapter = new SimpleCursorAdapter(this, R.layout.activity_view_record, cursor, from, to, 0);
+        adapter.notifyDataSetChanged();
+
+        listView.setAdapter(adapter);
+
         TextView craftName = findViewById(R.id.CurrentCraftTitle);
-        Button newCraftbtn = (Button) findViewById(R.id.newCraftButton);
+        TextView craftClient = findViewById(R.id.CurrentCraftClient);
+        Button newCraftbtn = findViewById(R.id.newCraftButton);
+
         newCraftbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,8 +88,16 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
 //                                Temp
                                 craftName.setText(typedCraftName.getText().toString());
-//                                craftClient.setText(typedCraftClient.getText().toString());
-//                                Temp
+                                craftClient.setText(typedCraftClient.getText().toString());
+
+                                final String name = craftName.getText().toString();
+                                final String desc = craftClient.getText().toString();
+
+                                dbManager.insert(name, desc);
+                                adapter.notifyDataSetChanged();
+
+                                Intent main = new Intent(MainActivity.this, MainActivity.class);
+                                startActivity(main);
                             }
                         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
@@ -68,6 +106,27 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }).create();
                 alertDialog.show();
+            }
+        });
+
+        // OnCLickListiner For List Items
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long viewId) {
+                TextView idTextView = view.findViewById(R.id.id);
+                TextView titleTextView = view.findViewById(R.id.title);
+                TextView descTextView = view.findViewById(R.id.desc);
+
+                String id = idTextView.getText().toString();
+                String title = titleTextView.getText().toString();
+                String desc = descTextView.getText().toString();
+
+                Intent modify_intent = new Intent(getApplicationContext(), ModifyCountryActivity.class);
+                modify_intent.putExtra("title", title);
+                modify_intent.putExtra("desc", desc);
+                modify_intent.putExtra("id", id);
+
+                startActivity(modify_intent);
             }
         });
     }
