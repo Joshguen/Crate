@@ -65,4 +65,13 @@
         android:text="Test"
         tools:layout_editor_absoluteY="195dp" />
 
+    <Spinner
+        android:id="@+id/craftSelector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tempBtn"
+        android:layout_centerHorizontal="true"
+        android:text="Test"
+        tools:layout_editor_absoluteY="195dp" />
+
 </RelativeLayout>

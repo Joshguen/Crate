@@ -1,5 +1,6 @@
 package com.example.crate;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -7,9 +8,11 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -26,6 +29,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.crate.databinding.ActivityMainBinding;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     final int[] to = new int[] { R.id.id, R.id.title, R.id.desc };
 
+    @SuppressLint("Range")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,8 +78,53 @@ public class MainActivity extends AppCompatActivity {
 
         TextView craftName = findViewById(R.id.CurrentCraftTitle);
         TextView craftClient = findViewById(R.id.CurrentCraftClient);
-        Button newCraftbtn = findViewById(R.id.newCraftButton);
 
+        ArrayList allCraftNames = new ArrayList();
+        cursor.moveToFirst();
+        for (int i = 0; i < cursor.getCount(); i++) {
+            allCraftNames.add(cursor.getString(cursor.getColumnIndex(cursor.getColumnName(1))));
+            cursor.moveToNext();
+        }
+        Spinner craftSelector = findViewById(R.id.craftSelector);
+
+        ArrayAdapter<String> craftSelectorArrayAdapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_spinner_item,
+                        allCraftNames); //selected item will look like a spinner set from XML
+
+        craftSelectorArrayAdapter.setDropDownViewResource(android.R.layout
+                .simple_spinner_dropdown_item);
+
+        craftSelector.setAdapter(craftSelectorArrayAdapter);
+
+        cursor.moveToFirst();
+
+        craftName.setText(cursor.getString(1));
+        craftClient.setText(String.valueOf(cursor.getPosition()));
+
+        Button tempBtn = findViewById(R.id.tempBtn);
+        tempBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                craftName.setText(cursor.getColumnName(0));
+
+                craftName.setText(cursor.getString(cursor.getColumnIndex(cursor.getColumnName(1))));
+//                cursor.moveToNext();
+                craftClient.setText(String.valueOf(cursor.getPosition()));
+
+                AlertDialog alertDialog = new MaterialAlertDialogBuilder(MainActivity.this ).setTitle("ALERT!")
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent main = new Intent(MainActivity.this, MainActivity.class);
+                                startActivity(main);
+                                dialogInterface.dismiss();
+                            }
+                        }).create();
+                alertDialog.show();
+            }
+        });
+
+        Button newCraftbtn = findViewById(R.id.newCraftButton);
         newCraftbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 dbManager.insert(name, desc);
                                 adapter.notifyDataSetChanged();
-
+                                //Refreshes the page
                                 Intent main = new Intent(MainActivity.this, MainActivity.class);
                                 startActivity(main);
                             }
@@ -130,6 +181,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
 }
