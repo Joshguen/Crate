@@ -23,15 +23,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ModifyCountryActivity"
+            android:name=".ModifyCraftActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".CountryListActivity"
+            android:name=".CraftListActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".AddCountryActivity"
+            android:name=".AddCraftActivity"
             android:label="@string/app_name" >
         </activity>
     </application>

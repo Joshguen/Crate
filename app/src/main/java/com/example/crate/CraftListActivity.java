@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CountryListActivity extends AppCompatActivity {
+public class CraftListActivity extends AppCompatActivity {
 
     private DBManager dbManager;
 
@@ -55,7 +55,7 @@ public class CountryListActivity extends AppCompatActivity {
                 String title = titleTextView.getText().toString();
                 String desc = descTextView.getText().toString();
 
-                Intent modify_intent = new Intent(getApplicationContext(), ModifyCountryActivity.class);
+                Intent modify_intent = new Intent(getApplicationContext(), ModifyCraftActivity.class);
                 modify_intent.putExtra("title", title);
                 modify_intent.putExtra("desc", desc);
                 modify_intent.putExtra("id", id);
@@ -77,7 +77,7 @@ public class CountryListActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id == R.id.add_record) {
 
-            Intent add_mem = new Intent(this, AddCountryActivity.class);
+            Intent add_mem = new Intent(this, AddCraftActivity.class);
             startActivity(add_mem);
 
         }

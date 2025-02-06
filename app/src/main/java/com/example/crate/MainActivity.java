@@ -15,12 +15,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-    private ListView listView;
-
-    final String[] from = new String[] { DatabaseHelper._ID,
-            DatabaseHelper.SUBJECT, DatabaseHelper.DESC };
-
-    final int[] to = new int[] { R.id.id, R.id.title, R.id.desc };
 
     @SuppressLint("Range")
     @Override

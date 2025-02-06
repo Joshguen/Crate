@@ -8,7 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class AddCountryActivity extends Activity implements OnClickListener {
+public class AddCraftActivity extends Activity implements OnClickListener {
 
     private Button addTodoBtn;
     private EditText subjectEditText;
@@ -45,7 +45,7 @@ public class AddCountryActivity extends Activity implements OnClickListener {
 
                 dbManager.insert(name, desc);
 
-                Intent main = new Intent(AddCountryActivity.this, CountryListActivity.class)
+                Intent main = new Intent(AddCraftActivity.this, CraftListActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                 startActivity(main);

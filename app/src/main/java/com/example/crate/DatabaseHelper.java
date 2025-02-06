@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Table Name
-    public static final String TABLE_NAME = "COUNTRIES";
+    public static final String TABLE_NAME = "CRAFTS";
 
     // Table columns
     public static final String _ID = "_id";
@@ -16,7 +16,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DESC = "description";
 
     // Database Information
-    static final String DB_NAME = "JOURNALDEV_COUNTRIES.DB";
+    static final String DB_NAME = "JOURNALDEV_CRAFTS.DB";
 
     // database version
     static final int DB_VERSION = 1;

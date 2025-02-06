@@ -18,12 +18,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.crate.DBManager;
 import com.example.crate.DatabaseHelper;
-import com.example.crate.ModifyCountryActivity;
+import com.example.crate.MainActivity;
+import com.example.crate.ModifyCraftActivity;
 import com.example.crate.R;
 import android.widget.SimpleCursorAdapter;
 import com.example.crate.databinding.FragmentHomeBinding;
@@ -107,6 +107,8 @@ public class HomeFragment extends Fragment {
                                 dbManager.insert(name, desc);
                                 adapter.notifyDataSetChanged();
 
+                                Intent main = new Intent(getContext(), MainActivity.class);
+                                startActivity(main);
                                 //Refreshes the page
 //                                Intent main = new Intent(HomeFragment.this.getContext(), HomeFragment.this.getClass());
 //                                startActivity(main);
@@ -132,7 +134,7 @@ public class HomeFragment extends Fragment {
                 String title = titleTextView.getText().toString();
                 String desc = descTextView.getText().toString();
 
-                Intent modify_intent = new Intent(getContext(), ModifyCountryActivity.class);
+                Intent modify_intent = new Intent(getContext(), ModifyCraftActivity.class);
                 modify_intent.putExtra("title", title);
                 modify_intent.putExtra("desc", desc);
                 modify_intent.putExtra("id", id);

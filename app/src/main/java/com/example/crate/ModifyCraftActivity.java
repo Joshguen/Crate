@@ -8,7 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class ModifyCountryActivity extends Activity implements OnClickListener {
+public class ModifyCraftActivity extends Activity implements OnClickListener {
 
     private EditText titleText;
     private Button updateBtn, deleteBtn;
