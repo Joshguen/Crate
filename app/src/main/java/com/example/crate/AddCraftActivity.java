@@ -13,6 +13,8 @@ public class AddCraftActivity extends Activity implements OnClickListener {
     private Button addTodoBtn;
     private EditText subjectEditText;
     private EditText descEditText;
+    private EditText startDateEditText;
+    private EditText endDateEditText;
 
     private DBManager dbManager;
 
@@ -26,6 +28,8 @@ public class AddCraftActivity extends Activity implements OnClickListener {
 
         subjectEditText = (EditText) findViewById(R.id.subject_edittext);
         descEditText = (EditText) findViewById(R.id.description_edittext);
+        startDateEditText = (EditText) findViewById(R.id.start_date_edittext);
+        endDateEditText = (EditText) findViewById(R.id.end_date_edittext);
 
         addTodoBtn = (Button) findViewById(R.id.add_record);
 
@@ -42,8 +46,10 @@ public class AddCraftActivity extends Activity implements OnClickListener {
 
                 final String name = subjectEditText.getText().toString();
                 final String desc = descEditText.getText().toString();
+                final String startDate = startDateEditText.getText().toString();
+                final String endDate = endDateEditText.getText().toString();
 
-                dbManager.insert(name, desc);
+                dbManager.insert(name, desc, startDate, endDate);
 
                 Intent main = new Intent(AddCraftActivity.this, CraftListActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

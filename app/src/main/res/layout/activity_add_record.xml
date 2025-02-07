@@ -25,6 +25,26 @@
         android:minLines="5" >
     </EditText>
 
+    <EditText
+        android:id="@+id/start_date_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/enter_start_date"
+        android:inputType="text"
+        android:minLines="5" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/end_date_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/enter_end_date"
+        android:inputType="text"
+        android:minLines="5" >
+    </EditText>
+
     <Button
         android:id="@+id/add_record"
         android:layout_width="wrap_content"

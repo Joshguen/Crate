@@ -14,7 +14,6 @@
             android:layout_height="wrap_content"
             android:inputType="textCapSentences"
             android:id="@+id/craftName"/>
-
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -22,15 +21,42 @@
         android:layout_height="match_parent"
         android:layout_marginStart="24sp"
         android:layout_marginEnd="24sp"
-        android:hint="Who's this for?">
-
+        android:hint="Craft Client">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/craftClient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="70sp"
             android:inputType="textCapSentences" />
+    </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="372dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="24sp"
+        android:layout_marginEnd="24sp"
+        android:hint="Start Date">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/craftStartDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140sp"
+            android:layout_below="@id/craftClient"
+            android:inputType="textCapSentences" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="372dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="24sp"
+        android:layout_marginEnd="24sp"
+        android:hint="End Date">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/craftEndDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="210sp"
+            android:inputType="textCapSentences" />
     </com.google.android.material.textfield.TextInputLayout>
 
 

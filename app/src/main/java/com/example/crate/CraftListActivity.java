@@ -21,9 +21,12 @@ public class CraftListActivity extends AppCompatActivity {
     private SimpleCursorAdapter adapter;
 
     final String[] from = new String[] { DatabaseHelper._ID,
-            DatabaseHelper.SUBJECT, DatabaseHelper.DESC };
+            DatabaseHelper.SUBJECT,
+            DatabaseHelper.DESC,
+            DatabaseHelper.STARTDATE,
+            DatabaseHelper.ENDDATE};
 
-    final int[] to = new int[] { R.id.id, R.id.title, R.id.desc };
+    final int[] to = new int[] { R.id.id, R.id.title, R.id.desc, R.id.start_date, R.id.end_date };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +53,22 @@ public class CraftListActivity extends AppCompatActivity {
                 TextView idTextView = (TextView) view.findViewById(R.id.id);
                 TextView titleTextView = (TextView) view.findViewById(R.id.title);
                 TextView descTextView = (TextView) view.findViewById(R.id.desc);
+                TextView startDateTextView = (TextView) view.findViewById(R.id.start_date);
+                TextView endDateTextView = (TextView) view.findViewById(R.id.end_date);
 
                 String id = idTextView.getText().toString();
                 String title = titleTextView.getText().toString();
                 String desc = descTextView.getText().toString();
+                String startDate = startDateTextView.getText().toString();
+                String endDate = endDateTextView.getText().toString();
 
                 Intent modify_intent = new Intent(getApplicationContext(), ModifyCraftActivity.class);
                 modify_intent.putExtra("title", title);
                 modify_intent.putExtra("desc", desc);
                 modify_intent.putExtra("id", id);
+                modify_intent.putExtra("startDate", startDate);
+                modify_intent.putExtra("endDate", endDate);
+
 
                 startActivity(modify_intent);
             }

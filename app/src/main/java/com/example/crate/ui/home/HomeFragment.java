@@ -38,9 +38,9 @@ public class HomeFragment extends Fragment {
     private SimpleCursorAdapter adapter;
 
     final String[] from = new String[] { DatabaseHelper._ID,
-            DatabaseHelper.SUBJECT, DatabaseHelper.DESC };
+            DatabaseHelper.SUBJECT, DatabaseHelper.DESC, DatabaseHelper.STARTDATE, DatabaseHelper.ENDDATE };
 
-    final int[] to = new int[] { R.id.id, R.id.title, R.id.desc };
+    final int[] to = new int[] { R.id.id, R.id.title, R.id.desc, R.id.start_date, R.id.end_date };
 
     @SuppressLint("Range")
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -89,6 +89,8 @@ public class HomeFragment extends Fragment {
                 View view1 = LayoutInflater.from(HomeFragment.this.getContext()).inflate(R.layout.layout_newcraft, null);
                 TextInputEditText typedCraftName = view1.findViewById(R.id.craftName);
                 TextInputEditText typedCraftClient = view1.findViewById(R.id.craftClient);
+                TextInputEditText typedCraftStartDate = view1.findViewById(R.id.craftStartDate);
+                TextInputEditText typedCraftEndDate = view1.findViewById(R.id.craftEndDate);
                 AlertDialog alertDialog = new MaterialAlertDialogBuilder(HomeFragment.this.getContext())
                         .setTitle("New Craft!")
                         .setView(view1)
@@ -103,8 +105,10 @@ public class HomeFragment extends Fragment {
 
                                 final String name = craftName.getText().toString();
                                 final String desc = craftClient.getText().toString();
+                                final String startDate = typedCraftStartDate.getText().toString();
+                                final String endDate = typedCraftEndDate.getText().toString();
 
-                                dbManager.insert(name, desc);
+                                dbManager.insert(name, desc, startDate, endDate);
                                 adapter.notifyDataSetChanged();
 
                                 Intent main = new Intent(getContext(), MainActivity.class);
@@ -129,15 +133,21 @@ public class HomeFragment extends Fragment {
                 TextView idTextView = view.findViewById(R.id.id);
                 TextView titleTextView = view.findViewById(R.id.title);
                 TextView descTextView = view.findViewById(R.id.desc);
+                TextView startDateTextView = view.findViewById(R.id.start_date);
+                TextView endDateTextView = view.findViewById(R.id.end_date);
 
                 String id = idTextView.getText().toString();
                 String title = titleTextView.getText().toString();
                 String desc = descTextView.getText().toString();
+                String startDate = startDateTextView.getText().toString();
+                String endDate = endDateTextView.getText().toString();
 
                 Intent modify_intent = new Intent(getContext(), ModifyCraftActivity.class);
                 modify_intent.putExtra("title", title);
                 modify_intent.putExtra("desc", desc);
                 modify_intent.putExtra("id", id);
+                modify_intent.putExtra("startDate", startDate);
+                modify_intent.putExtra("endDate", endDate);
 
                 startActivity(modify_intent);
             }

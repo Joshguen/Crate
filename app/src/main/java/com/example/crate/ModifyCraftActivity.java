@@ -10,9 +10,11 @@ import android.widget.EditText;
 
 public class ModifyCraftActivity extends Activity implements OnClickListener {
 
-    private EditText titleText;
     private Button updateBtn, deleteBtn;
+    private EditText titleText;
     private EditText descText;
+    private EditText startDateText;
+    private EditText endDateText;
 
     private long _id;
 
@@ -31,6 +33,8 @@ public class ModifyCraftActivity extends Activity implements OnClickListener {
 
         titleText = (EditText) findViewById(R.id.subject_edittext);
         descText = (EditText) findViewById(R.id.description_edittext);
+        startDateText = (EditText) findViewById(R.id.start_date_edittext);
+        endDateText = (EditText) findViewById(R.id.end_date_edittext);
 
         updateBtn = (Button) findViewById(R.id.btn_update);
         deleteBtn = (Button) findViewById(R.id.btn_delete);
@@ -39,11 +43,15 @@ public class ModifyCraftActivity extends Activity implements OnClickListener {
         String id = intent.getStringExtra("id");
         String name = intent.getStringExtra("title");
         String desc = intent.getStringExtra("desc");
+        String startDate = intent.getStringExtra("startDate");
+        String endDate = intent.getStringExtra("endDate");
 
         _id = Long.parseLong(id);
 
         titleText.setText(name);
         descText.setText(desc);
+        startDateText.setText(startDate);
+        endDateText.setText(endDate);
 
         updateBtn.setOnClickListener(this);
         deleteBtn.setOnClickListener(this);
@@ -54,8 +62,10 @@ public class ModifyCraftActivity extends Activity implements OnClickListener {
         if (v.getId() == R.id.btn_update) {
             String title = titleText.getText().toString();
             String desc = descText.getText().toString();
+            String startDate = startDateText.getText().toString();
+            String endDate = endDateText.getText().toString();
 
-            dbManager.update(_id, title, desc);
+            dbManager.update(_id, title, desc, startDate, endDate);
             this.returnHome();
         } else if (v.getId() == R.id.btn_delete) {
             dbManager.delete(_id);

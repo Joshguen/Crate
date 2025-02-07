@@ -6,6 +6,8 @@
     <string name="empty_list_text">Empty</string>
     <string name="enter_title">Enter Title</string>
     <string name="enter_desc">Enter Desc</string>
+    <string name="enter_start_date">Enter Start Date</string>
+    <string name="enter_end_date">Enter End Date</string>
     <string name="btn_update">Update</string>
     <string name="btn_delete">Delete</string>
     <string name="add_record">Add record</string>

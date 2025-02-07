@@ -24,12 +24,33 @@
         android:minLines="5" >
     </EditText>
 
+    <EditText
+        android:id="@+id/start_date_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/enter_start_date"
+        android:layout_below="@id/description_edittext"
+        android:inputType="text"
+        android:minLines="5" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/end_date_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/enter_end_date"
+        android:layout_below="@id/start_date_edittext"
+        android:inputType="text"
+        android:minLines="5" >
+    </EditText>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:weightSum="2"
-        android:layout_below="@id/description_edittext"
+        android:layout_below="@id/end_date_edittext"
         android:gravity="center_horizontal"
         android:orientation="horizontal" >
 
